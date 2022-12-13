@@ -1,6 +1,7 @@
 AIO_BUTTON_FEED = "test-button"
+AIO_THERMAL = 'thermal'
 AIO_USERNAME='tombroskipc'
-AIO_KEY='aio_yBPW71b3LNCLDXjIo0jql6TZ1v77'
+AIO_KEY='aio_KmOV92TwDW6iz12jj0w2d2FHshkE'
 OPEN_DOOR_VALUE = 1
 CLOSE_DOOR_VALUE = 0
 MODEL_PATH = 'model/facenet_keras.h5'

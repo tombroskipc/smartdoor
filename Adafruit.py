@@ -1,7 +1,8 @@
 from typing import List
 import  sys
 from Adafruit_IO import Client, MQTTClient
-
+from constant import AIO_BUTTON_FEED, AIO_THERMAL
+from time import sleep
 
 class Adafruit:
     __client: MQTTClient
@@ -35,6 +36,11 @@ class Adafruit:
             'feed': feed_id,
             'payload': payload,
         })
+
+        if feed_id == AIO_THERMAL and int(payload) > 70:
+            print('ALTER TEMPERATURE TOO HIGH, AUTO OPEN DOOR')
+            self.publish(AIO_BUTTON_FEED, 1)
+        #     sleep(10000)
     
     def subcribe_new_device(self, feed_id: str):
         self.__client.subscribe(feed_id)
