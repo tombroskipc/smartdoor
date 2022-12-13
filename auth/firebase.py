@@ -3,10 +3,10 @@ from firebase_admin.credentials import Certificate
 from firebase_admin import auth as Auth
 import traceback
 import requests as RQ
-import json
+
 CRED_PATH = "credentials/service.json"
 
-cred = Certificate("./credentials/service.json")
+cred = Certificate(CRED_PATH)
 app = firebase_admin.initialize_app(cred)
 
 REST_URL = 'https://identitytoolkit.googleapis.com/v1/accounts'
@@ -34,7 +34,8 @@ class REST:
             'password': password
         }
 
-        return RQ.post(url, data).json()
+        res = RQ.post(url, data)
+        return res
         
 
 class SDK:
@@ -57,7 +58,7 @@ class SDK:
     @staticmethod
     def edit_profile(**kwargs):
         try:
-            pass
+            return Auth.update_user(**kwargs)
         except Exception as error:
             print(error)
             print(traceback.format_exc())
@@ -77,10 +78,19 @@ def sign_up():
 def sign_in():
     payload = {
         'email': 'nhatanh@gmail.com',
-        'password': '123456789'
+        'password': '1234567890',
     }
     res = SDK.sign_in(**payload)
     return res
 
 def edit_profile():
-    pass
+    payload = {
+        'uid': '???',
+        'display_name': 'Ne',
+        'email': 'nhatem@gmail.com',
+        'email_verified': True,
+        'phone_number': '+84 111111111',
+        'password': '111',
+    }
+    res = SDK.edit_profile(**payload)
+    return res
