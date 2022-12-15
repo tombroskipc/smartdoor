@@ -7,6 +7,7 @@ from services.AdafruitService import AdafruitService
 from services.CaptureService import CaptureService
 from services.FaceRegService import FaceRegService
 from services.ModelService import ModelService
+from services.BackendService import BackendService
 
 def setup_capture_service():
     print('SETUP CAPTURE')
@@ -27,13 +28,24 @@ def setup_facereq_service():
     print('DONE SETUP FACE REQ!')
     return face_req
 
-def setup_adafruit_service(capture_service: CaptureService, face_req_service: FaceRegService):
+def setup_backend_service():
+    print('SETUP BACKEND')
+    backend_service = BackendService(
+        getenv('FIREBASE_DATABASE_URL'),
+        'key.json',
+        getenv('FIREBASE_STORAGE_BUCKET')
+    )
+    print('DONE SETUP BACKEND!')
+    return backend_service
+
+def setup_adafruit_service(capture_service: CaptureService, face_req_service: FaceRegService, backend_service: BackendService):
     print('SETUP ADAFRUIT')
     aio = Client(getenv('AIO_USERNAME'), getenv('AIO_KEY'))
     client = MQTTClient(getenv('AIO_USERNAME'), getenv('AIO_KEY'))
     adafruit_service = AdafruitService(aio, client, {
         'capture_service': capture_service,
-        'face_req_service': face_req_service
+        'face_req_service': face_req_service,
+        'backend_service': backend_service
     })
 
     adafruit_service.subcribe_new_device(AIO_DOOR_BUTTON_FEED)

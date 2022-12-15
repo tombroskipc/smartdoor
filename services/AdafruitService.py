@@ -3,8 +3,8 @@ import sys
 from Adafruit_IO import Client, MQTTClient
 from constant import *
 from time import sleep
-
-
+from PIL import Image
+from json import dumps
 class AdafruitService:
     __client: MQTTClient
     __aio: Client
@@ -63,9 +63,12 @@ class AdafruitService:
 
     def __trigger(self):
         print('CAPTURE BUTTON PRESSED')
-        frame = self.__services['capture_service'].get_frame()
         try:
+            frame = self.__services['capture_service'].get_frame()
+            copy_frame = frame.copy()
             result = self.__services['face_req_service'].predict(frame)
+            copy_image = Image.fromarray(copy_frame)
+            copy_image = copy_image.convert('RGB')
 
             print(result)
 
@@ -82,6 +85,18 @@ class AdafruitService:
                     AIO_DOOR_BUTTON_FEED,
                     CLOSE_DOOR_VALUE
                 )
+
+            backend_data = self.__services['backend_service'].upload_image(
+                result['name'],
+                copy_image
+            )
+            self.log_data('BACKEND DATA', dumps(backend_data, indent=4))
+            self.__services['backend_service'].save_to_database(
+                backend_data['name'],
+                backend_data['image_url'],
+                backend_data['local_time'],
+                backend_data['face_id']
+            )
         except Exception as e:
             if str(e) == 'No face detected':
                 print('NO FACE DETECTED, DO NOTHING')

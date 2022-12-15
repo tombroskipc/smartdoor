@@ -1,0 +1,18 @@
+{
+  "type": "service_account",
+  "project_id": "smart-door-c5207",
+  "private_key_id": "87dc85b6ff582c481e8d7673f63dff12f3555a16",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDjBkgulicRXBrb\ndX/MOOa6L3e/yJEcNgXAsCcZ5Q7mkyrdpDjMAEWhPv4hgGdNCUMAl8UopUcxRTor\nlEXqbTHAxSRYddsKQILkpVR22ESp90hN53PU3H7hAGp/Tr1Kj4VzmUSSmyB8AoFX\nkT2gSfNAqa3I6lZSJx4MpMitato0x5qpNAgvqO5oB+kWma5vI4dxhE8s0XlbgWtC\nLFhsm1i8+I2vG3XOaLsWnqIruQnqhnT/mSE0oXiq1xUHfFuNEaLPA4yufUdPUTyU\nTPQrcUIevqaKgMKBHs2Xkm7A0hCJ2HHlJLU3Ms1sh5KbZKBk3hGsHchhI18s2bdr\n+3G7rVHlAgMBAAECggEAPOplmeJ+TyEor7RCe1jVSCYOeq5liW1Rc9eQVllo+yOH\n//rdppd4F4EgjXq3vSr8CH+wzmwywxyxNBpP/EwaaoA7dWUCRijzNkjKdi0nl3eb\nthOht/8GKHeFG+3Tytrh0xfQF4p6V+wQKp/1KjpNhA9Da0K9sMOAQ6I/mpCuRjS7\nXJAZENjf61JlDZfd5Gx1jGUYBdLAnvXLRmMDzZQpyrUZkC6C6XLYwC9DpjeAxzY/\nXkM7ubTS2u9OhL24VsX5wC0LYlAw5RkhEQ+RQyuxyL1gV+zybI4CuEC+KFyYFvj1\nrfdMBLNVAzxAaJoH8qHlYYeigt96uAjxxmlK5rjrrQKBgQD825n+XnWdq9qpyga4\nYFCaVnlKoFk+1pFqwkXN9bK4FKOMoh/M22vPZhNyF0pyF5LnduYnfZGxPwMKgl9k\nO8Jcz5TZLeHczYZXNhNyb6HnwtgHr3MdomFPTj9V4s6FgSRlhgGoCyNAZwhAsukw\nm2fOeNGVtjItPn3lBLqR2WuLowKBgQDl2H+1ZZ5kUAHcAAet1QYrlxERWKWdEM2r\nzKF9fBs5rVdua3ofa/At/FTrJC5vx41c38pA7tqbAjkji1NtBnpIxrBZVx+Vdon6\n5Xj1tJNJss8YBDCIvKshwLiwwy/z216R0xrtqz9oH6Ow0B7XNf47lJZtiEewciuj\nXJiYfemE1wKBgFaNUOP6L2ZeKgYOakh4Z3689N2vj3zr83DIuR4r6RYLsoP0BtCX\nlwqyFRvrjwcIvLdQQq3n1JQITqEtSTvFHN2qDHhetT5gd4iosPVt8syjLFFNJClT\nqN19mj5q2WhncS7zNOPxlAp6eh+zXhDOUTUitBL7/6bvCib3fGlqM97jAoGAT5jy\nYTeX6tVqT24TOrgTMvVWC9PPRt2S3HQ5WOOp6geFx8+gs1EGFGbWYbhd/If3BLrb\nqDEPs67Jau3NLmyX3KwyVj49yd0LW8Asa6rldxhdb8vDoxbzjPTZAR4XdTP7RDT/\nll8/zidm4MyyYYVpTejfT39qlEh1pFVk4yp3vHECgYAw365GhmNpMiyLlLsaiJ38\nKb4HXO5AviTmoVZqvG82onKIJkl1txZK/NAmGxyU25Duo9FatdiA77DVHhC+P1QS\n2HYybihLr/ZQn9+7t0ia07phhXwSJr+ebql922HSpUetEmB9sc/+FPkd3aKEb2Yt\nImPUlqD1WYs4jhG3tSYH+A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-zxypg@smart-door-c5207.iam.gserviceaccount.com",
+  "client_id": "109360130578447232185",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zxypg%40smart-door-c5207.iam.gserviceaccount.com",
+  "project_info": {
+    "project_number": "657017723247",
+    "firebase_url": "https://smart-door-c5207-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smart-door-c5207",
+    "storage_bucket": "smart-door-c5207.appspot.com"
+  }
+}
