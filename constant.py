@@ -1,12 +1,9 @@
-AIO_BUTTON_FEED = "test-button"
+AIO_DOOR_BUTTON_FEED = "door-button"
 AIO_THERMAL = 'thermal'
-AIO_USERNAME='tombroskipc'
-AIO_KEY='aio_KmOV92TwDW6iz12jj0w2d2FHshkE'
+AIO_CAPTURE_BUTTON_FEED = 'capture-button'
+
+
 OPEN_DOOR_VALUE = 1
 CLOSE_DOOR_VALUE = 0
-MODEL_PATH = 'model/facenet_keras.h5'
-JOB_LIB_PATH = 'svm_model.joblib'
 
-USER_TABBLE = 'User'
-USER_EMAIL_INDEX = 'email-index'
-ACCESS_HISTORY_TABLE = 'Access-History'
+DOOR_WAIT_TIME = 5

@@ -1,46 +1,22 @@
-from Adafruit import Adafruit
-from Adafruit_IO import Client, MQTTClient
-from constant import *
-from time import sleep
-from FaceReg import FaceReg
 from dotenv import load_dotenv
 load_dotenv()
+import asyncio
+from time import sleep
 
-def setup_adafruit():
-    print('SETUP ADAFRUIT')
-    aio = Client(AIO_USERNAME, AIO_KEY)
-    client = MQTTClient(AIO_USERNAME, AIO_KEY)
-    adafruit = Adafruit(aio, client)
+from init import setup_adafruit_service, setup_capture_service, setup_facereq_service
 
-    adafruit.subcribe_new_device(AIO_BUTTON_FEED)
-    adafruit.subcribe_new_device(AIO_THERMAL)
-    print('DONE!')
-    return adafruit
-
-def setup_facereq():
-    print('SETUP FACE REQ')
-    face_req = FaceReg(MODEL_PATH, JOB_LIB_PATH)
-    print('DONE')
-    return face_req
-
+from constant import *
 
 def main():
-    face_req_client = setup_facereq()
-    adafruit_client = setup_adafruit()
-    
-    print('FINISH SETUP')
-    
-    frame_path = face_req_client.get_frame()
-    result = face_req_client.predict(frame_path)
-    print(result)
-    
-    if (result['name'] != 'Stranger'):
-        print('OPEN DOOR')
-        adafruit_client.publish(AIO_BUTTON_FEED, OPEN_DOOR_VALUE)
-        sleep(5)
-        adafruit_client.publish(AIO_BUTTON_FEED, CLOSE_DOOR_VALUE)
-    
-    sleep(100000)
+    capture_service = setup_capture_service()
+    face_req_service = setup_facereq_service()
+    setup_adafruit_service(capture_service, face_req_service)
+
+    loop = asyncio.get_event_loop()
+    try:
+        loop.run_forever()
+    finally:
+        loop.close()
 
 if __name__ == '__main__':
     main()
