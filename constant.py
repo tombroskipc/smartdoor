@@ -1,4 +1,4 @@
-AIO_DOOR_BUTTON_FEED = "door-button"
+AIO_DOOR_STATUS_FEED = "door-status"
 AIO_THERMAL = 'thermal'
 AIO_CAPTURE_BUTTON_FEED = 'capture-button'
 

@@ -5,6 +5,8 @@ from constant import *
 from time import sleep
 from PIL import Image
 from json import dumps
+
+
 class AdafruitService:
     __client: MQTTClient
     __aio: Client
@@ -42,7 +44,7 @@ class AdafruitService:
 
         if feed_id == AIO_THERMAL and int(payload) > 70:
             print('ALTER TEMPERATURE TOO HIGH, AUTO OPEN DOOR')
-            self.publish(AIO_DOOR_BUTTON_FEED, 1)
+            self.publish(AIO_DOOR_STATUS_FEED, 1)
         elif feed_id == AIO_CAPTURE_BUTTON_FEED:
             self.__trigger()
 
@@ -60,6 +62,8 @@ class AdafruitService:
             print(log)
         print('=======================')
 
+    def __change_door_status(self, value):
+        self.publish(AIO_DOOR_STATUS_FEED, value)
 
     def __trigger(self):
         print('CAPTURE BUTTON PRESSED')
@@ -74,17 +78,12 @@ class AdafruitService:
 
             if (result['name'] != 'Stranger'):
                 print('OPEN DOOR')
-                self.publish(
-                    AIO_DOOR_BUTTON_FEED,
-                    OPEN_DOOR_VALUE
-                )
+                self.__change_door_status(OPEN_DOOR_VALUE)
 
                 sleep(DOOR_WAIT_TIME)
 
-                self.publish(
-                    AIO_DOOR_BUTTON_FEED,
-                    CLOSE_DOOR_VALUE
-                )
+                print('CLOSE DOOR')
+                self.__change_door_status(CLOSE_DOOR_VALUE)
 
             backend_data = self.__services['backend_service'].upload_image(
                 result['name'],
@@ -97,6 +96,7 @@ class AdafruitService:
                 backend_data['local_time'],
                 backend_data['face_id']
             )
+
         except Exception as e:
             if str(e) == 'No face detected':
                 print('NO FACE DETECTED, DO NOTHING')

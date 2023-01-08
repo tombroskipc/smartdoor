@@ -2,7 +2,7 @@ from firebase_admin import credentials, initialize_app, storage
 import time
 import requests
 import io
-
+from PIL import Image
 class BackendService:
     def __init__(self, database_url, credential, bucket_name) -> None:
         self.__database_url = database_url
@@ -12,18 +12,18 @@ class BackendService:
         
         self.__bucket = storage.bucket(self.__bucket_name)
     
-    def upload_image(self, name, image):
+    def upload_image(self, name, image: Image.Image):
         # Upload image to firebase storage
         img_byte_arr = io.BytesIO()
-        image.save(img_byte_arr, format='PNG')
+        image.save(img_byte_arr, format='JPEG')
         image = img_byte_arr.getvalue()
 
         num = int(round(time.time() * 1000))
         local_time = time.ctime(time.time())
-        new_name = name+"_"+str(local_time).replace(':', '_')+'.png'
+        new_name = name+"_"+str(local_time).replace(':', '_')+'.jpeg'
 
         blob = self.__bucket.blob(new_name)
-        blob.upload_from_string(image, content_type='image/png')
+        blob.upload_from_string(image, content_type='image/jpeg')
         blob.make_public()
         return {
             'name': new_name,
@@ -45,4 +45,4 @@ class BackendService:
         print('SAVE TO DATABASE')
         print(data)
         print('=======================')
-        requests.post(self.__database_url + '/History/.json', json=data)
+        requests.patch(self.__database_url + '/History/.json', json=data)

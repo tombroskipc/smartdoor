@@ -48,7 +48,7 @@ def setup_adafruit_service(capture_service: CaptureService, face_req_service: Fa
         'backend_service': backend_service
     })
 
-    adafruit_service.subcribe_new_device(AIO_DOOR_BUTTON_FEED)
+    adafruit_service.subcribe_new_device(AIO_DOOR_STATUS_FEED)
     adafruit_service.subcribe_new_device(AIO_THERMAL)
     adafruit_service.subcribe_new_device(AIO_CAPTURE_BUTTON_FEED)
     print('DONE SETUP ADAFRUIT!')
